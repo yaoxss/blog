@@ -69,30 +69,36 @@ export default {
 			saveName = '元旦节';
 			break outermost; 
 		}
+
 		if(countdownDate[currentTime.month + i] !== undefined){
 			// 找到的情况下
+			console.log(countdownDate[currentTime.month + i]);
 			saveMonth = currentTime.month + i;
 			for(let item in countdownDate[currentTime.month + i]){
 				if(countdownDate[currentTime.month + i][item]['type'] == 0){
 					if(countdownDate[currentTime.month + i][item]['day'] > currentTime.day){
 						saveDay = countdownDate[currentTime.month + i][item]['day'];
 						saveName = countdownDate[currentTime.month + i][item]['name'];
+						// console.log(1);
 						break outermost; 
 					}
 					if((currentTime.month + i) > currentTime.month && countdownDate[currentTime.month + i][item]['day'] < currentTime.day){
 						saveDay = countdownDate[currentTime.month + i][item]['day'];
 						saveName = countdownDate[currentTime.month + i][item]['name'];
+						// console.log(2);
 						break outermost; 
 					}
 				}else{
 					if(countdownDate[currentTime.month + i][item]['day'] > currentTime.day){
 						saveDay = countdownDate[currentTime.month + i][item][currentTime.year]['day'];
 						saveName = countdownDate[currentTime.month + i][item][currentTime.year]['name'];
+						// console.log(3);
 						break outermost; 
 					}
 					if((currentTime.month + i) > currentTime.month && countdownDate[currentTime.month + i][item]['day'] < currentTime.day){
 						saveDay = countdownDate[currentTime.month + i][item][currentTime.year]['day'];
 						saveName = countdownDate[currentTime.month + i][item][currentTime.year]['name'];
+						// console.log(4);
 						break outermost; 
 					}
 				}

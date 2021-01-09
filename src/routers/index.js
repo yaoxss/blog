@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import TestRouter from '@/views/testRouter'
 import MyComponents from '@/views/myComponents.vue'
 import PersonalInformation from '@/views/personalInformation.vue'
-import Picture from '@/views/picture.vue'
+import documentYao from '@/views/documentYao.vue'
 import Dynamic from '@/views/dynamic.vue'
 
 Vue.use(VueRouter);
@@ -14,8 +14,8 @@ const routes = [
   	component: TestRouter
   },
   {
-  	path: '/picture',
-  	component: Picture
+  	path: '/documentYao',
+  	component: documentYao
   },
   {
   	path: '/myComponents',

@@ -35,7 +35,7 @@
 					</div>
 					<div class="item">
 						<div>30</div>
-						<div><router-link to="/picture">图片</router-link></div>
+						<div><router-link to="/documentYao">文档</router-link></div>
 					</div>
 				</div>
 			</div>

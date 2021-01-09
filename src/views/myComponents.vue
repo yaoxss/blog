@@ -20,20 +20,24 @@ import Nav from '@/components/Nav.vue';
 import ScrollEffect from '@/components/ScrollEffect.vue';
 import StreamerBtm from '@/components/StreamerBtm.vue';
 import Carousel from '@/components/Carousel.vue';
+import TargetCollapseMenu from '@/components/TargetCollapseMenu.vue'
+import Aside from '@/components/aside/Aside.vue'
 
 export default {
   name: 'myComponents',
   data(){
 	  return {
 		  componentsList: {
-			  Cover,Nav,ScrollEffect,StreamerBtm,Carousel
+			  Cover,Nav,ScrollEffect,StreamerBtm,Carousel,TargetCollapseMenu,Aside
 		  },
 		  traceData: {
 			  'Cover': '自适应图片',
 			  'Nav': '响应式导航栏',
 			  'ScrollEffect': 'CSS滚筒效果',
 			  'StreamerBtm': '流光按钮',
-			  'Carousel': '轮播图'
+			  'Carousel': '轮播图',
+			  'TargetCollapseMenu': 'target折叠菜单',
+			  'Aside': '侧边栏列表'
 		  }
 	  }
   },
@@ -44,7 +48,9 @@ export default {
 	ScrollEffect,
 	StreamerBtm,
 	TraceNav,
-	Carousel
+	Carousel,
+	TargetCollapseMenu,
+	Aside
   },
   created(){
   }
