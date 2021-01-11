@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-25 17:34:27
+ * @LastEditTime: 2021-01-11 16:54:17
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vueComponents\my-components\src\views\documentYao.vue
+-->
 <template>
 	<div class="box-index">
 		<div class="box-index-left">
@@ -9,11 +17,19 @@
 </template>
 
 <script>
-	import Aside from '../components/aside/Aside.vue'
+	import Aside from '../components/aside/Aside.vue';
+	import scriptjs from 'scriptjs';
 	export default{
 		name: 'documentYao',
 		data(){
 			return {}
+		},
+		created(){
+			let a = scriptjs('/static/js/jQuery3.5.1.js',() => {
+				console.log('cc');
+			});
+			console.log(a);
+			// a.then();
 		},
 		components: {
 			Aside
