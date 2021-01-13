@@ -3892,7 +3892,7 @@
      * @returns {Object}   div           返回jQuery对象元素
      */
     
-    editormd.markdownToHTML = function(id, options) {
+    editormd.markdownToHTML = function(id, options, innerHTMLStatic = false) {
         var defaults = {
             gfm                  : true,
             toc                  : true,
@@ -3915,7 +3915,6 @@
             sequenceDiagram      : false,
             previewCodeHighlight : true
         };
-        
         editormd.$marked  = marked;
 
         var div           = $("#" + id);
@@ -3967,6 +3966,12 @@
             saveTo.text(markdownDoc);
         } else {
             saveTo.remove();
+        }
+        
+        if(innerHTMLStatic != false){
+            // 清空里面的内容
+            // console.log(div.addClass("markdown-body " + this.classPrefix + "html-preview")[0]);
+            div.addClass("markdown-body " + this.classPrefix + "html-preview")[0].innerHTML = '';
         }
         
         div.addClass("markdown-body " + this.classPrefix + "html-preview").append(markdownParsed);
