@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-25 17:34:27
- * @LastEditTime: 2021-01-11 16:54:17
+ * @LastEditTime: 2021-01-13 16:28:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueComponents\my-components\src\views\documentYao.vue
@@ -9,30 +9,36 @@
 <template>
 	<div class="box-index">
 		<div class="box-index-left">
-			<div class="btm">添加</div>
-			<Aside></Aside>
+			<Aside :asideList="treeList" :boxIndexRightDom="boxIndexRightDom" ></Aside>
 		</div>
-		<div class="box-index-right">right</div>
+		<div class="box-index-right" ref="boxIndexRightDom">		
+			<EditorMdShow />	
+		</div>
 	</div>
 </template>
 
 <script>
-	import Aside from '../components/aside/Aside.vue';
-	import scriptjs from 'scriptjs';
+	import Aside from '@/components/aside/Aside.vue';
+	import {TREELIST} from '@/config/documentConfig.js';
+	import EditorMdShow from '@/components/editor/EditorMdShow.vue'
 	export default{
 		name: 'documentYao',
 		data(){
-			return {}
+			return {
+				'treeList': null,
+				'mdContent': '',
+				'boxIndexRightDom': null
+			}
 		},
 		created(){
-			let a = scriptjs('/static/js/jQuery3.5.1.js',() => {
-				console.log('cc');
-			});
-			console.log(a);
-			// a.then();
+			this.treeList = TREELIST;
+		},
+		mounted(){
+			this.boxIndexRightDom = this.$refs.boxIndexRightDom;
 		},
 		components: {
-			Aside
+			Aside,
+			EditorMdShow
 		}
 	}
 </script>
@@ -53,16 +59,21 @@
 	background-repeat: no-repeat; */
 }
 .box-index-left{
-	width: 200px;
+	width: 300px;
 	margin: 50px 0px;
 	border-right: 2px solid #eee;
-}
-.box-index-left .btm{
-	text-align: right;
-	margin-right: 5px;
+	height: ceil(100% - 101px);
 }
 .box-index-right{
 	flex:1;
-	padding: 50px 30px;
+	margin: 50px 0px;
+	padding: 0 20px;
+	height: ceil(100% - 101px);
+	overflow-y: auto;
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE 10+ */
+}
+.box-index-right::-webkit-scrollbar {
+	display: none; /* Chrome Safari */
 }
 </style>

@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-01-09 11:01:35
+ * @LastEditTime: 2021-01-11 21:54:43
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \vueComponents\my-components\src\components\editor\Editor.vue
+-->
 <template>
 	<div id="editor">
 		<quillEditor>
@@ -23,16 +31,16 @@
 	export default{
 		name: 'editor',
 		created(){
-			let $ = window.$;
-			let editormd = window.editormd;
-			console.log($);
-			console.log(window.editormd);
-			editormd("editor", {
-				// width: "100%",
-				// height: "100%",
-				// markdown: "xxxx",     // dynamic set Markdown text
-				// path : "editor.md/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
-			});
+			// let $ = window.$;
+			// let editormd = window.editormd;
+			// console.log($);
+			// console.log(window.editormd);
+			// editormd("editor", {
+			// 	// width: "100%",
+			// 	// height: "100%",
+			// 	// markdown: "xxxx",     // dynamic set Markdown text
+			// 	// path : "editor.md/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
+			// });
 		},
 		components: {
 		    quillEditor

@@ -70,7 +70,6 @@ export default {
   created(){},
   methods:{
 	  showMessage(name){
-		console.log(name);
 		if(name == 'wx'){
 			this.messageBoxTitle = '微信二维码';
 			this.imgPath = '/static/img/mywx_qrcode.jpg';

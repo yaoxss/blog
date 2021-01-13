@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<li v-for="(item,index) in asideChildren" v-bind:key="index" >
-			<p class="secondary-title" :id="'aside_'+item.id" @click.prevent="parentSecondaryDropDown($event,{clickIdArray:item.clickIdArray,title:item.title})" >
+			<p class="secondary-title" :id="'aside_'+item.id" @click.prevent="parentSecondaryDropDown($event,{clickIdArray:item.clickIdArray,title:item.title,filePath:item.filePath})" >
 				<span>{{item.title}}</span>
 			</p>
 			<ul v-if="item.children">
@@ -20,7 +20,7 @@
 			}
 		},
 		created(){
-			console.log(this.asideChildren);
+			// console.log(this.asideChildren);
 		},
 		methods: {
 			parentSecondaryDropDown(event,dataObj){

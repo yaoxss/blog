@@ -72,7 +72,6 @@ export default {
 
 		if(countdownDate[currentTime.month + i] !== undefined){
 			// 找到的情况下
-			console.log(countdownDate[currentTime.month + i]);
 			saveMonth = currentTime.month + i;
 			for(let item in countdownDate[currentTime.month + i]){
 				if(countdownDate[currentTime.month + i][item]['type'] == 0){
