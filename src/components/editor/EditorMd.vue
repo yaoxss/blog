@@ -125,3 +125,8 @@
         }
     }
 </script>
+<style scoped>
+.markdown-editor-box{
+    width: 100%;
+}
+</style>

@@ -1,14 +1,15 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-25 17:34:27
- * @LastEditTime: 2021-01-13 16:28:19
+ * @LastEditTime: 2021-01-17 21:15:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueComponents\my-components\src\views\documentYao.vue
 -->
 <template>
 	<div class="box-index">
-		<div class="box-index-left">
+		<div class="column"><span class="iconfont icon-caidan" @click="columnClick" ></span></div>
+		<div class="box-index-left" v-show="boxIndexLeftShow" >
 			<Aside :asideList="treeList" :boxIndexRightDom="boxIndexRightDom" ></Aside>
 		</div>
 		<div class="box-index-right" ref="boxIndexRightDom">		
@@ -27,7 +28,8 @@
 			return {
 				'treeList': null,
 				'mdContent': '',
-				'boxIndexRightDom': null
+				'boxIndexRightDom': null,
+				'boxIndexLeftShow': true
 			}
 		},
 		created(){
@@ -35,6 +37,11 @@
 		},
 		mounted(){
 			this.boxIndexRightDom = this.$refs.boxIndexRightDom;
+		},
+		methods: {
+			columnClick(){
+				this.boxIndexLeftShow = !this.boxIndexLeftShow
+			}
 		},
 		components: {
 			Aside,
@@ -58,11 +65,25 @@
 	background-position: center;
 	background-repeat: no-repeat; */
 }
+.column{
+	width: 30px;
+	margin: 50px 0px;
+	text-align: center;
+	background-color: #ccc;
+}
+.column .iconfont{
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 30px;
+}
 .box-index-left{
 	width: 300px;
 	margin: 50px 0px;
 	border-right: 2px solid #eee;
 	height: ceil(100% - 101px);
+	overflow-y: auto;
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE 10+ */
 }
 .box-index-right{
 	flex:1;
@@ -74,6 +95,9 @@
 	-ms-overflow-style: none; /* IE 10+ */
 }
 .box-index-right::-webkit-scrollbar {
+	display: none; /* Chrome Safari */
+}
+.box-index-left::-webkit-scrollbar {
 	display: none; /* Chrome Safari */
 }
 </style>

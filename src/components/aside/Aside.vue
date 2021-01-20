@@ -223,8 +223,11 @@
 		padding: 5px 0;
 	}
 	.aside-list-box{
-		margin-left: 20px;
+		margin-left: 5px;
 		color: #4f5959;
+	}
+	.aside-list-box > li{
+		padding-top: 5px;
 	}
 	.aside-list-box ul{
 		margin-left: 20px;

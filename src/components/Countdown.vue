@@ -14,6 +14,8 @@ export default {
   name: 'countdown',
   data(){
 	  return {
+		// 拥有节日的月份
+		haveFestivalMonth: [1,2,4,5,6,9,10],
 		countdownDate: {
 			1:[
 				{type: 0,month: 1,day: 1,name: '元旦节'}
@@ -21,11 +23,8 @@ export default {
 			2:[
 				{
 					type: 1,
-					2021: {month: 2,day: 12,name: '春节'}
-				},
-				{
-					type: 1,
-					2021: {month: 2,day: 26,name: '春节'}
+					2021: {month: 2,day: 12,name: '春节'},
+					2022: {month: 2,day: 26,name: '春节'}
 				}
 			],
 			4:[
@@ -57,62 +56,17 @@ export default {
   components: {},
   created(){
 	  let currentTime = commonDate.getCurrentTime();
-	  let countdownDate = this.countdownDate;
-	 
-	  let saveMonth = 1;
-	  let saveDay = 1;
-	  let saveName = '';
-	  outermost: for(let i = 0; i < 12 ; ++i){
-		if(currentTime.month + i > 13){
-			saveMonth = 0;
-			saveDay = 0;
-			saveName = '元旦节';
-			break outermost; 
-		}
+	  let {nextFestivalMonth,nextFestivalDay,nextFestivalName} = this.getNextFestival();
 
-		if(countdownDate[currentTime.month + i] !== undefined){
-			// 找到的情况下
-			saveMonth = currentTime.month + i;
-			for(let item in countdownDate[currentTime.month + i]){
-				if(countdownDate[currentTime.month + i][item]['type'] == 0){
-					if(countdownDate[currentTime.month + i][item]['day'] > currentTime.day){
-						saveDay = countdownDate[currentTime.month + i][item]['day'];
-						saveName = countdownDate[currentTime.month + i][item]['name'];
-						// console.log(1);
-						break outermost; 
-					}
-					if((currentTime.month + i) > currentTime.month && countdownDate[currentTime.month + i][item]['day'] < currentTime.day){
-						saveDay = countdownDate[currentTime.month + i][item]['day'];
-						saveName = countdownDate[currentTime.month + i][item]['name'];
-						// console.log(2);
-						break outermost; 
-					}
-				}else{
-					if(countdownDate[currentTime.month + i][item]['day'] > currentTime.day){
-						saveDay = countdownDate[currentTime.month + i][item][currentTime.year]['day'];
-						saveName = countdownDate[currentTime.month + i][item][currentTime.year]['name'];
-						// console.log(3);
-						break outermost; 
-					}
-					if((currentTime.month + i) > currentTime.month && countdownDate[currentTime.month + i][item]['day'] < currentTime.day){
-						saveDay = countdownDate[currentTime.month + i][item][currentTime.year]['day'];
-						saveName = countdownDate[currentTime.month + i][item][currentTime.year]['name'];
-						// console.log(4);
-						break outermost; 
-					}
-				}
-			}
-		}
-	  }
 	  let remain = 0;
-	  if(saveMonth == 0 || saveDay == 0){
+	  if(nextFestivalMonth == 1 || nextFestivalDay == 1){
 		  // 表示今年胡节假日已过完 计算1月1日
 		  remain = this.remainDay(currentTime.month,currentTime.day,12,31,currentTime.year);
 	  }else{
-		  remain = this.remainDay(currentTime.month,currentTime.day,saveMonth,saveDay,currentTime.year);
+		  remain = this.remainDay(currentTime.month,currentTime.day,nextFestivalMonth,nextFestivalDay,currentTime.year);
 	  }
 	  this.remain = remain;
-	  this.name = saveName;
+	  this.name = nextFestivalName;
   },
   methods:{
 	  remainDay(monthS,dayS,monthE,dayE,year){
@@ -130,6 +84,72 @@ export default {
 			  }
 		  }
 		  return remain;
+	  },
+	  // 获取下一个节日 月份和号数
+	  getNextFestival(){
+		let date = new Date();
+		let year = date.getFullYear();
+		let month = date.getMonth()+1;
+		let day = date.getDate();
+		// 下一个节日的月和号
+		let nextFestivalDay = undefined;
+		let nextFestivalMonth = undefined;
+		let nextFestivalName = undefined;
+
+		  // this.haveFestivalMonth
+		if(this.countdownDate[month] !== undefined){
+			  // 表示当月拥有节日
+			let countdownDateItem = this.countdownDate[month];
+			for(let item of countdownDateItem){
+				if(item.type == 0){
+					// 表示国历的节日
+					if(day < item.day){
+						nextFestivalDay = item.day;
+						nextFestivalMonth = item.month;
+						nextFestivalName = item.name;
+						break;
+					}
+				}
+				if(item.type == 1){
+					// 表示农历的节日
+					if(day < item[year].day){
+						nextFestivalDay = item[year].day;
+						nextFestivalMonth = item[year].month;
+						nextFestivalName = item[year].name;
+						break;
+					}
+				}
+			}
+		}
+		if(nextFestivalMonth === undefined){
+			nextFestivalMonth = this.getNextFestivalMonth(month);
+			let item = this.countdownDate[nextFestivalMonth][0];
+			if(item.type == 0){
+				// 表示国历的节日
+				nextFestivalDay = item.day;
+				nextFestivalName = item.name;
+			}
+			if(item.type == 1){
+				// 表示农历的节日
+				nextFestivalDay = item[year].day;
+				nextFestivalName = item[year].name;
+			}
+		}
+		return {nextFestivalMonth,nextFestivalDay,nextFestivalName}
+	  },
+	  // 获取当月的下一个节日的月份
+	  getNextFestivalMonth(month){
+		  let haveFestivalMonth = this.haveFestivalMonth;
+		  let nextMonth = undefined;
+		  haveFestivalMonth.forEach(element => {
+			  if(month < element){
+				  if(nextMonth === undefined){
+					nextMonth = element;
+				  }
+			  }
+		  });
+		  nextMonth === undefined ? nextMonth = 1 : '';
+		  return nextMonth;
 	  }
   }
 }

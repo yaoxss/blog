@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-20 22:41:27
+ * @LastEditTime: 2021-01-18 10:36:16
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vueComponents\my-components\src\views\myComponents.vue
+-->
 <template>
 	<div>
 		<TraceNav :traceData="traceData" ></TraceNav>
@@ -22,14 +30,16 @@ import StreamerBtm from '@/components/StreamerBtm.vue';
 import Carousel from '@/components/Carousel.vue';
 import TargetCollapseMenu from '@/components/TargetCollapseMenu.vue';
 import Aside from '@/components/aside/Aside.vue';
-import EditorMd from '@/components/editor/EditorMd.vue';
+// 富文本编辑器
+// import EditorMd from '@/components/editor/EditorMd.vue';
+import CarouselMap from '@/components/carouselMap/CarouselMap.vue';
 
 export default {
   name: 'myComponents',
   data(){
 	  return {
 		  componentsList: {
-			  Cover,Nav,ScrollEffect,StreamerBtm,Carousel,TargetCollapseMenu,Aside,EditorMd
+			  Cover,Nav,ScrollEffect,StreamerBtm,Carousel,TargetCollapseMenu,Aside,CarouselMap
 		  },
 		  traceData: {
 			  'Cover': '自适应图片',
@@ -39,7 +49,7 @@ export default {
 			  'Carousel': '轮播图',
 			  'TargetCollapseMenu': 'target折叠菜单',
 			  'Aside': '侧边栏列表',
-			  'EditorMd': 'md富文本编辑器'
+			  'CarouselMap': '轮播图1'
 		  }
 	  }
   },
@@ -53,7 +63,7 @@ export default {
 	Carousel,
 	TargetCollapseMenu,
 	Aside,
-	EditorMd
+	CarouselMap
   },
   created(){
   }
