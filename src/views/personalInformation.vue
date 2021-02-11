@@ -27,7 +27,7 @@
 				<div class="bottom-box">
 					<div class="item">
 						<div>30</div>
-						<div>链接</div>
+						<div><router-link to="/works">作品</router-link></div>
 					</div>
 					<div class="item">
 						<div>30</div>

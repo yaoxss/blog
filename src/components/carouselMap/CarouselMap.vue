@@ -1,7 +1,7 @@
 <!--
  * @Author: yaoxs
  * @Date: 2021-01-17 21:29:55
- * @LastEditTime: 2021-01-17 22:02:18
+ * @LastEditTime: 2021-02-11 11:59:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueComponents\my-components\src\components\carouselMap\CarouselMap.vue
@@ -19,7 +19,7 @@
                 <span @click="switchBannerClick(4)" >5</span>
             </div>
             <div class="rectangle-box">
-                <div class="item" ref="imgItem"></div>
+                <div class="item" ref="imgItem" :style="{'left': imgItemLeft+'px'}" ></div>
             </div>
         </div>
 	</div>
@@ -36,7 +36,8 @@
                 imgItem: 0,
                 startZoomSize: '120%',
                 requestAnimationID: undefined,
-                AddCutControl: 'add'
+                AddCutControl: 'add',
+                imgItemLeft: 0
             }
 		},
 		created(){
@@ -69,7 +70,9 @@
                 this.imgItem >= 4 ? this.AddCutControl = 'cut' : '';
                 let imgName = this.imgArray[id];
                 this.imgName = imgName + '.jpg';
-                this.$refs.imgItem.style.left = (id * 80) + 'px';
+                this.imgItemLeft = id * 80;
+                // 这样子写有时报错
+                // this.$refs.imgItem.style.left = (id * 80) + 'px';
                 // 动画执行效果(看起来感觉没有CSS的animation动画属性那么流畅)
                 if(this.requestAnimationID != undefined){
                     cancelAnimationFrame(this.requestAnimationID);

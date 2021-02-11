@@ -317,23 +317,13 @@
 </script>
 ```
 
+#### 自定义元素
 >事件重定向只会发生在影子 DOM 中实际存在的元素上。使用<slot>标签从外部投射进来的元素不会发生事件重定向，因为从技术上讲，这些元素仍然存在于影子 DOM 外部。
 ```html
 <script>
-    // 创建一个元素作为影子宿主
     document.body.innerHTML = ` 
-        <div onclick="console.log('Handled outside:', event.target)">
-            <p onclick="console.log('ppp')">slot</p>
-        </div> 
+        <x-foo >I'm inside a nonsense element.</x-foo > 
     `; 
-    // 添加影子 DOM 并向其中插入 HTML 
-    document.querySelector('div') 
-    .attachShadow({ mode: 'open' }) 
-    .innerHTML = ` 
-            <slot></slot>
-        `; 
-    // 点击按钮时：
-    // Handled inside: <button onclick="..."></button> 
-    // Handled outside: <div onclick="..."></div>
+    console.log(document.querySelector('x-foo') instanceof HTMLElement); // true
 </script>
 ```

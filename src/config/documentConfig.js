@@ -301,7 +301,39 @@ const TREELIST = [
                                 id: 1007001001,
                                 title: 'open',
                                 clickIdArray: [1,1007,1007001,1007001001]
+                            },
+                            {
+                                id: 1007001002,
+                                title: 'send',
+                                clickIdArray: [1,1007,1007001,1007001002]
+                            },
+                            {
+                                id: 1007001003,
+                                title: 'responseText',
+                                clickIdArray: [1,1007,1007001,1007001003]
+                            },
+                            {
+                                id: 1007001004,
+                                title: 'responseXML',
+                                clickIdArray: [1,1007,1007001,1007001004]
+                            },
+                            {
+                                id: 1007001005,
+                                title: 'status',
+                                clickIdArray: [1,1007,1007001,1007001005]
+                            },
+                            {
+                                id: 1007001006,
+                                title: 'statusText',
+                                clickIdArray: [1,1007,1007001,1007001006]
+                            },
+                            {
+                                id: 1007001007,
+                                title: 'abort',
+                                clickIdArray: [1,1007,1007001,1007001007]
+
                             }
+                            
                         ]
                     },
                     {
